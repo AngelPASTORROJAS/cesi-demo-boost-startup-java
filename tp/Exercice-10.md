@@ -1,4 +1,4 @@
-# Exercice 10 : Ajouter le Déploiement en Production
+# Exercice 10 : Ajouter le Déploiement docker
 
 [⬅️ Exercice précédent](Exercice-09.md) | [🏠 Sommaire](README.md) | [Exercice suivant ➡️](Exercice-11.md)
 
@@ -57,7 +57,7 @@ on:
         required: false
 
 jobs:
-  deploy-production-server:
+  deploy-docker:
     name: 🚀 Deploy
     runs-on: ubuntu-latest
     steps:
@@ -78,12 +78,11 @@ jobs:
               --network app-network \
               ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DEPLOY_APPLI_NAME }}:latest
             sleep 10
-            curl -f http://localhost:8080/actuator/health || exit 1
+            curl -f http://localhost:${{ secrets.DEPLOY_APPLI_PORT }}/actuator/health || exit 1
             docker image prune -af --filter "until=24h"
-
       - name: Verify deployment
         run: |
-          curl -f http://${{ secrets.DEPLOY_SERVER }}:8080/actuator/health
+          curl -f http://localhost:${{ secrets.DEPLOY_SERVER }}/actuator/health
 ```
 
 ### Étape 10.3 : Ajouter au pipeline principal
@@ -99,9 +98,9 @@ Modifiez `main-pipeline.yml` :
   # ═══════════════════════════════════════════════
   # ÉTAPE 9 : DÉPLOIEMENT EN PRODUCTION
   # ═══════════════════════════════════════════════
-  deploy-production-server:
+  deploy-docker:
     needs: dast-dynamic-security-testing
-    uses: ./.github/workflows/deploy-production-server.yml
+    uses: ./.github/workflows/deploy-docker.yml
     secrets: inherit
 ```
 
@@ -297,7 +296,7 @@ Vérifiez que l'application est accessible sur votre serveur !
 ```
 publish-docker-hub
     └── dast-dynamic-security-testing
-            └── deploy-production-server
+            └── deploy-docker
 ```
 
 Le déploiement est la dernière étape, après que tout soit validé, publié et testé dynamiquement.

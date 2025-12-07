@@ -50,7 +50,14 @@ jobs:
 
       - name: 📊 Generate test coverage report
         run: mvn jacoco:report || true
-
+        
+      - name: 📊 Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: target/site/jacoco/
+          retention-days: 7
+          
       - name: 📦 Package application
         run: mvn package -DskipTests=true
 

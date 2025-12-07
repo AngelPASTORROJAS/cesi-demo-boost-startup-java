@@ -21,19 +21,19 @@ Ajouter un job de notification qui affiche le statut final du pipeline et inform
 Modifiez `main-pipeline.yml`, ajoutez à la fin :
 
 ```yaml
-  deploy-production-server:
+  deploy-docker:
     needs: dast-dynamic-security-testing
-    uses: ./.github/workflows/deploy-production-server.yml
+    uses: ./.github/workflows/deploy-docker.yml
     secrets: inherit
 
   send-notifications:
-    needs: deploy-production-server
+    needs: deploy-docker
     runs-on: ubuntu-latest
     if: always()
     steps:
       - name: Deployment status
         run: |
-          if [ "${{ needs.deploy-production-server.result }}" == "success" ]; then
+          if [ "${{ needs.deploy-docker.result }}" == "success" ]; then
             echo "✅ Deployment successful!"
           else
             echo "❌ Deployment failed!"
@@ -56,10 +56,10 @@ Observez le job `send-notifications` dans l'onglet Actions.
 ## ✅ Critères de Validation
 
 - [ ] Le job s'exécute **toujours** (`if: always()`)
-- [ ] Le statut du déploiement est vérifié (`needs.deploy-production-server.result`)
+- [ ] Le statut du déploiement est vérifié (`needs.deploy-docker.result`)
 - [ ] Message de succès (`✅ Deployment successful!`) si tout va bien
 - [ ] Message d'échec (`❌ Deployment failed!`) avec `exit 1` en cas d'erreur
-- [ ] Le job dépend de `deploy-production-server`
+- [ ] Le job dépend de `deploy-docker`
 - [ ] S'exécute même si le déploiement a échoué
 
 ---
@@ -111,7 +111,7 @@ Observez le job `send-notifications` dans l'onglet Actions.
 
    **Approche simple (utilisée ici) :**
    ```yaml
-   needs: deploy-production-server
+   needs: deploy-docker
    ```
    - Vérifie seulement le résultat du déploiement
    - Plus simple et direct
@@ -126,7 +126,7 @@ Observez le job `send-notifications` dans l'onglet Actions.
      - sca-dependency-scan
      - secure-iac-dockerfile-scan
      - build-and-scan-docker
-     - deploy-production-server
+     - deploy-docker
    ```
    - Rapport complet de tous les jobs
    - Permet d'afficher le statut de chaque étape
@@ -153,7 +153,7 @@ main-pipeline.yml (Orchestrateur)
 │                                                      │
 │                                             [8]─ publish-docker-hub.yml
 │                                                      │
-│                                             [9]─ deploy-production-server.yml
+│                                             [9]─ deploy-docker.yml
 │                                                      │
 └─────────────────────────────────────────────[10]─ send-notifications
 ```
@@ -176,7 +176,7 @@ send-notifications:
     - sca-dependency-scan
     - secure-iac-dockerfile-scan
     - build-and-scan-docker
-    - deploy-production-server
+    - deploy-docker
   runs-on: ubuntu-latest
   if: always()
 
@@ -192,7 +192,7 @@ send-notifications:
         echo "SCA: ${{ needs.sca-dependency-scan.result }}"
         echo "IaC Security: ${{ needs.secure-iac-dockerfile-scan.result }}"
         echo "Docker Build: ${{ needs.build-and-scan-docker.result }}"
-        echo "Deployment: ${{ needs.deploy-production-server.result }}"
+        echo "Deployment: ${{ needs.deploy-docker.result }}"
         echo "═══════════════════════════════════════"
 ```
 

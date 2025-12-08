@@ -20,10 +20,10 @@ on:
 
 jobs:
   deploy-docker:
-    name: 🚀 Deploy
+    name: 🚀 Deploy Docker
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to server via SSH
+      - name: Deploy to docker via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEPLOY_SERVER }}
@@ -44,4 +44,4 @@ jobs:
             docker image prune -af --filter "until=24h"
       - name: Verify deployment
         run: |
-          curl -f http://localhost:${{ secrets.DEPLOY_SERVER }}/actuator/health
+          curl -f http://135.125.223.14${{ secrets.DEPLOY_SERVER }}:${{ secrets.DEPLOY_APPLI_PORT }}/actuator/health

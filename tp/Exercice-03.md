@@ -114,11 +114,11 @@ Vérifiez dans **Actions** puis dans **Security → Code scanning alerts**.
 
 ## ✅ Critères de Validation
 
-- [ ] Semgrep s'exécute et génère un SARIF (même si aucune vulnérabilité)
-- [ ] CodeQL analyse le code Java
-- [ ] Les résultats apparaissent dans **Security → Code scanning**
-- [ ] Le job attend que `build-and-test` soit terminé
-- [ ] Le temps d'exécution est d'environ 5-8 minutes
+- [x] Semgrep s'exécute et génère un SARIF (même si aucune vulnérabilité)
+- [x] CodeQL analyse le code Java
+- [x] Les résultats apparaissent dans **Security → Code scanning**
+- [x] Le job attend que `build-and-test` soit terminé
+- [x] Le temps d'exécution est d'environ 5-8 minutes
 
 ---
 

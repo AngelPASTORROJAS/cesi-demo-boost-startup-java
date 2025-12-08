@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: cesi9-demo-java
-          image: angelpastorrojas/cesi9-demo-java:52613a3076b5a29b6c139fb99467072ab9363e3b		
+          image: angelpastorrojas/cesi9-demo-java-startup:6bef518d054ad2e7185a67d703e50033168e366c		
           ports:
             - containerPort: 8080
               name: http

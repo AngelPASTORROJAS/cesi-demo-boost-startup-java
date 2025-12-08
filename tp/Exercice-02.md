@@ -137,7 +137,8 @@ Allez dans **Actions** et vérifiez que :
 - [x] L'artefact JAR est uploadé (vérifier dans l'onglet Artifacts)
   + build-artifacts
   + coverage-reports
-- [ ] Le temps d'exécution est d'environ 3-5 minutes
+  + http://localhost:8080/swagger-ui/index.html
+- [x] Le temps d'exécution est d'environ 3-5 minutes
 
 ---
 

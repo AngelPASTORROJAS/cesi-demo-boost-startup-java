@@ -48,7 +48,7 @@ jobs:
   # ÉTAPE 6 : BUILD & SCAN DOCKER
   # ═══════════════════════════════════════════════
   build-and-scan-docker:
-    needs: [code-quality-sast, secret-scanning, secure-iac-dockerfile-scan]
+    needs: [code-quality-sast, secret-scanning]
     uses: ./.github/workflows/build-docker-image.yml
     secrets: inherit
 

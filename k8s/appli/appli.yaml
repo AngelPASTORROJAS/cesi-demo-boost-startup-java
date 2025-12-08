@@ -8,23 +8,23 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ema-demo-java
+  name: cesi9-demo-java
   namespace: cesi9
   labels:
-    app: ema-demo-java
+    app: cesi9-demo-java
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ema-demo-java
+      app: cesi9-demo-java
   template:
     metadata:
       labels:
-        app: ema-demo-java
+        app: cesi9-demo-java
     spec:
       containers:
-        - name: ema-demo-java
-          image: emanzat/ema-demo-java:c58d8177acfad8c20e751bd0944ef875d18fad20
+        - name: cesi9-demo-java
+          image: emanzat/cesi9-demo-java:c58d8177acfad8c20e751bd0944ef875d18fad20
           ports:
             - containerPort: 8080
               name: http
@@ -58,14 +58,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ema-demo-java-service
+  name: cesi9-demo-java-service
   namespace: cesi9
   labels:
-    app: ema-demo-java
+    app: cesi9-demo-java
 spec:
   type: ClusterIP
   selector:
-    app: ema-demo-java
+    app: cesi9-demo-java
   ports:
     - port: 80
       targetPort: 8080
@@ -75,7 +75,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ema-demo-java-ingress
+  name: cesi9-demo-java-ingress
   namespace: cesi9
   annotations:
     # Pour K3s avec Traefik
@@ -89,6 +89,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ema-demo-java-service
+                name: cesi9-demo-java-service
                 port:
                   number: 80

@@ -71,8 +71,8 @@ Créez un fichier `config/aws-config.txt` (à la racine du projet) :
 mkdir -p config
 cat > config/aws-config.txt << 'EOF'
 # Configuration AWS (NE PAS COMMITER EN PRODUCTION !)
-AWS_ACCESS_KEY_ID=AKIAIOSFODNN7PROD123
-AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYPROD123KEY
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 AWS_REGION=eu-west-1
 EOF
 ```

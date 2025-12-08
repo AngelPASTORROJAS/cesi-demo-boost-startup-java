@@ -77,3 +77,20 @@ jobs:
           name: trivy-deps-report
           path: trivy-deps-report.json
           retention-days: 7
+
+      - name: 📦 Run OWASP Dependency Check
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: |
+          if [ -n "${NVD_API_KEY}" ]; then
+            echo "🚀 Running with NVD API Key for faster download"
+            mvn org.owasp:dependency-check-maven:check \
+              -DfailBuildOnCVSS=7 \
+              -DsuppressionFiles=.owasp-suppressions.xml \
+              -DnvdApiKey=${NVD_API_KEY}
+          else
+            echo "🐌 Running without NVD API Key (slower download)"
+            mvn org.owasp:dependency-check-maven:check \
+              -DfailBuildOnCVSS=7 \
+              -DsuppressionFiles=.owasp-suppressions.xml
+          fi

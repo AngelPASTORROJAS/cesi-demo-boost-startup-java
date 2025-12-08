@@ -173,18 +173,18 @@ ubuntu@server:~$
 Avant d'exécuter le pipeline, vérifiez :
 
 ### Secrets GitHub
-- [ ] `DOCKERHUB_USERNAME` est défini
-- [ ] `DOCKERHUB_TOKEN` est défini et valide
-- [ ] `DEPLOY_SERVER` est défini sur `135.125.223.14`
-- [ ] `DEPLOY_SSH_USER` est défini
-- [ ] `DEPLOY_SSH_PRIVATE_KEY` est défini avec la clé privée complète
-- [ ] `DEPLOY_APPLI_PORT` est personnalisé : `808X` selon votre numéro (8081 pour étudiant 1, 8082 pour étudiant 2, etc.)
-- [ ] `DEPLOY_APPLI_NAME` est personnalisé : `cesiX-demo-boost-startup` selon votre numéro
-- [ ] `MONGODB_COLLECTION_NAME` est personnalisé : `personscesiX` selon votre numéro
+- [x] `DOCKERHUB_USERNAME` est défini
+- [x] `DOCKERHUB_TOKEN` est défini et valide
+- [x] `DEPLOY_SERVER` est défini sur `135.125.223.14`
+- [x] `DEPLOY_SSH_USER` est défini
+- [x] `DEPLOY_SSH_PRIVATE_KEY` est défini avec la clé privée complète
+- [x] `DEPLOY_APPLI_PORT` est personnalisé : `808X` selon votre numéro (8081 pour étudiant 1, 8082 pour étudiant 2, etc.)
+- [x] `DEPLOY_APPLI_NAME` est personnalisé : `cesiX-demo-boost-startup` selon votre numéro
+- [x] `MONGODB_COLLECTION_NAME` est personnalisé : `personscesiX` selon votre numéro
 
 ### Configuration Personnalisée
-- [ ] **Numéro d'étudiant identifié** : Vous connaissez votre numéro (1 à 10)
-- [ ] **Port unique** : Configuré avec `808X` correspondant à votre numéro
+- [x] **Numéro d'étudiant identifié** : Vous connaissez votre numéro (1 à 10) => 9
+- [x] **Port unique** : Configuré avec `808X` correspondant à votre numéro
 - [ ] **Nom d'application unique** : Configuré avec `cesiX-demo-boost-startup`
 - [ ] **Collection MongoDB isolée** : Configurée avec `personscesiX`
 - [ ] **Namespace Kubernetes** : Configuré avec `cesiX` dans le TP ArgoCD (Exercice 12)

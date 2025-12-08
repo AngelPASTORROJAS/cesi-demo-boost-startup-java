@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: demo-java
+  name: cesi9-demo-java
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -13,7 +13,7 @@ spec:
     path: k8s/appli
   destination:
     server: https://kubernetes.default.svc
-    namespace: cesi1
+    namespace: cesi9
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

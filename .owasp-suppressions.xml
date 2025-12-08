@@ -83,6 +83,18 @@
         <cve>CVE-2019-2390</cve>
     </suppress>
 
+    <!-- Spring Boot MongoDB 4.0.0 - False positives MongoDB server CVEs -->
+    <suppress>
+        <notes>False positives: MongoDB server CVEs matched to Spring client libs</notes>
+        <!-- Match les packages EXACTS signalés -->
+        <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring-boot-(data-)?mongodb@4\.0\.0$</packageUrl>
+        <!-- TOUS les CVEs problématiques -->
+        <cve>CVE-2019-20925</cve>
+        <cve>CVE-2019-2386</cve>
+        <cve>CVE-2021-32036</cve>
+        <cve>CVE-2019-2390</cve>
+    </suppress>
+
     <!-- Alternative: Suppress by specific CVE IDs -->
     <!--
     <suppress>

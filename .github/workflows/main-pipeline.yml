@@ -43,12 +43,15 @@ jobs:
   #    uses: ./.github/workflows/sca-dependency-scan.yml
   #    secrets: inherit  # ⚠️ IMPORTANT pour passer NVD_API_KEY
 
+  secure-iac-dockerfile-scan:
+    needs: build-and-test
+    uses: ./.github/workflows/secure-iac-dockerfile-scan.yml
 
   # ═══════════════════════════════════════════════
   # ÉTAPE 6 : BUILD & SCAN DOCKER
   # ═══════════════════════════════════════════════
   build-and-scan-docker:
-    needs: [code-quality-sast, secret-scanning]
+    needs: [code-quality-sast, secret-scanning, secure-iac-dockerfile-scan]
     uses: ./.github/workflows/build-docker-image.yml
     secrets: inherit
 

@@ -129,12 +129,14 @@ Allez dans **Actions** et vérifiez que :
 
 ## ✅ Critères de Validation
 
-- [ ] Le workflow `build-unit-tests.yml` existe
-- [ ] Il utilise `workflow_call` comme déclencheur
-- [ ] Le `main-pipeline.yml` appelle ce workflow avec `uses:`
-- [ ] La compilation Maven réussit
-- [ ] Les tests passent (vérifier les logs)
-- [ ] L'artefact JAR est uploadé (vérifier dans l'onglet Artifacts)
+- [x] Le workflow `build-unit-tests.yml` existe
+- [x] Il utilise `workflow_call` comme déclencheur
+- [x] Le `main-pipeline.yml` appelle ce workflow avec `uses:`
+- [x] La compilation Maven réussit
+- [x] Les tests passent (vérifier les logs)
+- [x] L'artefact JAR est uploadé (vérifier dans l'onglet Artifacts)
+  + build-artifacts
+  + coverage-reports
 - [ ] Le temps d'exécution est d'environ 3-5 minutes
 
 ---

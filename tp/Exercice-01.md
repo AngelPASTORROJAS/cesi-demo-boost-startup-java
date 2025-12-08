@@ -92,11 +92,11 @@ Allez dans **Actions** → Vous devriez voir le workflow s'exécuter !
 
 ## ✅ Critères de Validation
 
-- [ ] Le fichier `main-pipeline.yml` est créé dans `.github/workflows/`
-- [ ] Le workflow apparaît dans l'onglet "Actions" de GitHub
-- [ ] Le job `placeholder` s'exécute avec succès
-- [ ] Vous voyez la liste des exercices à venir dans les logs
-- [ ] Vous comprenez les 4 types de déclencheurs
+- [x] Le fichier `main-pipeline.yml` est créé dans `.github/workflows/`
+- [x] Le workflow apparaît dans l'onglet "Actions" de GitHub
+- [x] Le job `placeholder` s'exécute avec succès
+- [x] Vous voyez la liste des exercices à venir dans les logs
+- [x] Vous comprenez les 4 types de déclencheurs
 
 ---
 

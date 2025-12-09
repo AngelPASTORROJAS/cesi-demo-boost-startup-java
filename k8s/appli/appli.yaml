@@ -31,7 +31,7 @@ spec:
           type: RuntimeDefault
       containers:
       - name: cesi9-demo-java
-        image: angelpastorrojas/cesi9-demo-boost-startup:latest  # Sera remplacé par GitHub Actions
+        image: emanzat/ema-demo-java:latest  # Sera remplacé par GitHub Actions
         ports:
         - containerPort: 8080
           name: http

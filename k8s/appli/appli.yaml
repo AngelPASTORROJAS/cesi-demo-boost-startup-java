@@ -12,6 +12,7 @@ metadata:
   namespace: cesi9
   labels:
     app: cesi9-demo-java
+    version: "1.0"
 spec:
   replicas: 2
   selector:
@@ -22,6 +23,12 @@ spec:
       labels:
         app: cesi9-demo-java
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: cesi9-demo-java
           image: angelpastorrojas/cesi9-demo-boost-startup:latest		
@@ -36,12 +43,20 @@ spec:
             - name: MONGODB_COLLECTION_NAME
               value: "personse"
           resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
             limits:
-              memory: "512Mi"
+              cpu: "1000m"
+              memory: "1Gi"
+            requests:
               cpu: "500m"
+              memory: "512Mi"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+              - ALL
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
@@ -54,6 +69,16 @@ spec:
               port: 8080
             initialDelaySeconds: 20
             periodSeconds: 5
+          volumeMounts:
+          - name: tmp
+            mountPath: /tmp
+          - name: logs
+            mountPath: /app/logs
+          volumes:
+          - name: tmp
+            emptyDir: {}
+          - name: logs
+            emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

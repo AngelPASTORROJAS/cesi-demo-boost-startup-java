@@ -22,13 +22,6 @@ spec:
       labels:
         app: cesi9-demo-java
     spec:
-      securityContext:
-        readOnlyRootFilesystem: true
-        runAsNonRoot: true
-        runAsUser: 101
-        fsGroup: 101
-        seccompProfile:
-          type: RuntimeDefault
       containers:
         - name: cesi9-demo-java
           image: angelpastorrojas/cesi9-demo-boost-startup:latest		

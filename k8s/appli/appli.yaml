@@ -23,6 +23,7 @@ spec:
         app: cesi9-demo-java
     spec:
       securityContext:
+        readOnlyRootFilesystem: true
         runAsNonRoot: true
         runAsUser: 101
         fsGroup: 101

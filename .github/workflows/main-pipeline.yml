@@ -82,6 +82,11 @@ jobs:
     uses: ./.github/workflows/deploy-k8s.yml
     secrets: inherit
 
+  publish:
+    needs: deploy-k8s
+    uses: ./.github/workflows/publish.yml
+    secrets: inherit
+
   send-notifications:
     needs: deploy-docker
     runs-on: ubuntu-latest

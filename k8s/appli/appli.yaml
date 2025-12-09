@@ -8,20 +8,20 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ema-demo-java
+  name: cesi9-demo-java
   namespace: cesi9  # ⚠️ Votre namespace !
   labels:
-    app: ema-demo-java
+    app: cesi9-demo-java
     version: "1.0"
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: ema-demo-java
+      app: cesi9-demo-java
   template:
     metadata:
       labels:
-        app: ema-demo-java
+        app: cesi9-demo-java
     spec:
       securityContext:
         runAsNonRoot: true
@@ -30,8 +30,8 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-      - name: ema-demo-java
-        image: emanzat/ema-demo-java:latest  # Sera remplacé par GitHub Actions
+      - name: cesi9-demo-java
+        image: angelpastorrojas/cesi9-demo-boost-startup:latest  # Sera remplacé par GitHub Actions
         ports:
         - containerPort: 8080
           name: http
